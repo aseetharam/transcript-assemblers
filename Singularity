@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: broadinstitute/gatk:4.1.8.1
+From: ubuntu:20.04
 
 %labels
    MAINTAINER Arun Seetharam
