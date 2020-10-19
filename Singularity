@@ -44,4 +44,5 @@ From: broadinstitute/gatk:4.1.8.1
    make && \
    make plugins && \
    make install
+   # required programs
    apt-get install -y bowtie2 jellyfish salmon
