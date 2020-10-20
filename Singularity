@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: ubuntu:20.04
+From: ubuntu:18.04
 
 
 %labels
@@ -11,6 +11,7 @@ From: ubuntu:20.04
    export PATH=$PATH:/usr/local/bin/trinityrnaseq:/usr/local/bin/trinityrnaseq/util
    
 %post
+   DEBIAN_FRONTEND=noninteractive
    apt-get update
    apt-get install -y build-essential wget curl git autoconf automake
    apt-get install -y gcc g++ bison make cmake
@@ -43,7 +44,7 @@ From: ubuntu:20.04
    git clone --recursive https://github.com/trinityrnaseq/trinityrnaseq.git  
    cd trinityrnaseq
    make && \
-   make plugins && \
-   make install
+      make plugins && \
+      make install
    # required programs
    apt-get install -y bowtie2 jellyfish salmon
