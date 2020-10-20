@@ -16,6 +16,7 @@ From: ubuntu:18.04
    apt-get install -y build-essential wget curl git autoconf automake
    apt-get install -y gcc g++ bison make cmake
    apt-get install -y perl zlib1g-dev libbz2-dev liblzma-dev libcurl4-gnutls-dev libssl-dev libncurses5-dev liblpsolve55-dev libboost-all-dev rsync librsync-dev 
+   apt-get install -y bowtie2 jellyfish salmon samtools
    # strawberry
    cd /root
    git clone https://github.com/ruolin/strawberry.git
@@ -27,10 +28,10 @@ From: ubuntu:18.04
    # install class2
    cd /root
    wget https://downloads.sourceforge.net/project/splicebox/CLASS-2.1.7.tar.gz
-   tar -xf CLASS-2.1.7.tar.gz
+   tar -xf CLASS-2.1.7.tar.gz 
    cd CLASS-2.1.7
    sh build.sh
-   mv class junc clnb grader addXS /usr/bin/
+   mv class junc clnb grader addXS run_class.pl /usr/bin/
    # instll stringtie
    cd /root
    git clone https://github.com/gpertea/stringtie
@@ -47,4 +48,3 @@ From: ubuntu:18.04
       make plugins && \
       make install
    # required programs
-   apt-get install -y bowtie2 jellyfish salmon
