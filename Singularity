@@ -83,7 +83,7 @@ From: ubuntu:20.04
     tar -xf CLASS-2.1.7.tar.gz 
     cd CLASS-2.1.7
     sh build.sh
-    chmod x+ class junc clnb grader addXS run_class.pl
+    chmod +x class junc clnb grader addXS run_class.pl
     mv class junc clnb grader addXS run_class.pl /usr/bin/
 
     # install psi-calss
