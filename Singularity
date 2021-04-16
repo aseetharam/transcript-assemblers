@@ -90,9 +90,9 @@ From: ubuntu:20.04
     cd /usr/local/src
     curl -L https://github.com/splicebox/PsiCLASS/archive/refs/tags/v1.0.2.tar.gz | tar -xz
     cd PsiCLASS-1.0.2/
+    make
     chmod +x psiclass subexon-info combine-subexons classes vote-transcripts junc grader trust-splice addXS add-genename *.pl
     mv psiclass subexon-info combine-subexons classes vote-transcripts junc grader trust-splice addXS add-genename *.pl /usr/bin/
-    make
    
     # instll stringtie
     cd /usr/local/src
