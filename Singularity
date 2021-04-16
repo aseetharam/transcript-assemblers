@@ -117,8 +117,6 @@ From: ubuntu:20.04
     pip3 install orfipy
  
 
-
-
 %apprun snakemake
 	snakemake "@"
 
@@ -142,3 +140,7 @@ From: ubuntu:20.04
 
 %apprun stringtie
     stringtie "@"
+
+
+
+
