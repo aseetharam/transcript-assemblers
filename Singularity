@@ -30,7 +30,7 @@ From: ubuntu:20.04
     apt install -y gcc g++ bison make cmake
     apt install -y perl zlib1g-dev libbz2-dev liblzma-dev libcurl4-gnutls-dev libssl-dev libncurses5-dev liblpsolve55-dev rsync librsync-dev
     apt install -y libboost-dev '^libboost-.*71-dev'
-    apt install -y bowtie2 jellyfish salmon 
+    apt install -y bowtie2 jellyfish salmon samtools
     apt install -y python3 python3-numpy python3-dev python3-scipy python3-pandas python3-pip libtool liblzma-dev
 
     # Mikado
@@ -84,6 +84,12 @@ From: ubuntu:20.04
     cd CLASS-2.1.7
     sh build.sh
     mv class junc clnb grader addXS run_class.pl /usr/bin/
+
+    # install psi-calss
+    cd /usr/local/src
+    curl -L https://github.com/splicebox/PsiCLASS/archive/refs/tags/v1.0.2.tar.gz | tar -xz
+    cd PsiCLASS-1.0.2/
+    make
    
     # instll stringtie
     cd /usr/local/src
@@ -103,7 +109,16 @@ From: ubuntu:20.04
     make plugins
     sed -i.bak 's/python/python3/g'  util/support_scripts/trinity_installer.py
     make install
-   
+    
+    # transdecoder
+    apt install -y transdecoder
+
+    # orfipy
+    pip3 install orfipy
+ 
+
+
+
 %apprun snakemake
 	snakemake "@"
 
@@ -124,3 +139,6 @@ From: ubuntu:20.04
 
 %apprun portcullis
     portcullis "@"
+
+%apprun stringtie
+    stringtie "@"
