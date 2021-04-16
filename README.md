@@ -1,17 +1,16 @@
-# Direct Evidence Pipeline Container
+# Direct Evidence Pipeline Container [![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/4893)
 
-This image contains all the tools required to run the direct evidence pipeline. For the complete pipeline workflow, see this repo: Urmi's Snakemaker pipeline. 
+This image contains all the tools required to run the direct evidence pipeline. For the complete pipeline workflow, see this [paste some link here](). 
 
 ## Getting Started
 
-Pull the container:
+To get the container:
 
 ```bash
 singularity pull evidence.sif shub://aseetharam/transcript-assemblers
 ```
 
-This will create a `evidence.sif` image, with the required programs pre-installed.
-
+This will create a `evidence.sif` image, with the required programs pre-installed. All the programs required for evidence-based gene prediction are installed in this image and you can either run the pipeline by hand or use the Snakemake/Nextflow workflows to run them.
 
 
 ### Prerequisities
@@ -20,59 +19,46 @@ In order to run this container you'll need [Singularity](https://sylabs.io/guide
 
 ### Usage
 
-BRAKER usage:
+Each tool has their own usage, so please check individual tools and their requirements if you are running them by hand.
 
 ```
-singularity run --no-home --home /opt/gm_key --cleanenv braker2.sif braker.pl --help
+# Transcript assemblers:
+singularity run --cleanenv evidence.sif Trinity
+singularity run --cleanenv evidence.sif class
+singularity run --cleanenv evidence.sif strawberry
+singularity run --cleanenv evidence.sif stringtie
+singularity run --cleanenv evidence.sif cufflinks
+
+# ORF predictor
+singularity run --cleanenv evidence.sif TransDecoder.LongOrfs
+singularity run --cleanenv evidence.sif orfipy
+
+# Mikado-related
+singularity run --cleanenv evidence.sif mikado
+singularity run --cleanenv evidence.sif diamond
+singularity run --cleanenv evidence.sif portcullis
+singularity run --cleanenv evidence.sif samtools
+singularity run --cleanenv evidence.sif prodigal
 ```
 
-#### Environment Variables
+### Environment Variables
 
   * `PATH` Location for all the installed tools
-  * `AUGUSTUS_SCRIPTS_PATH` misc. scripts used by `augusutus`
-  * `AUGUSTUS_BIN_PATH` `augustus` binaries
-  * `GENEMARK_PATH` `GeneMark` scripts
-  * `ALIGNMENT_TOOL_PATH` alignment programs that `braker` needs
+  * `PYTHONDONTWRITEBYTECODE`  set to true
+  * `TRINITY_HOME` to utlilites to work
 
-
-### Example run
+## Example run
 
 For running on your data:
 
 ```bash
-readonly SINGULARITY_IMAGE=/path/to/braker2.sif
-readonly BAM=/path/to/rnaseq.bam
-readonly GENOME=/path/to/genome-masked.fasta
-readonly PROT_SEQ=/path/to/mikado-proteins.faa
-readonly SPECIES="unique-name"
-
-# gffread adds `.` for strop codons, replace it with `*`
-sed '/^[^>]/s/\./*/' ${PROT_SEQ} > ${PROT_SEQ##*/}.new
-
-singularity pull braker2.sif shub://aseetharam/braker
-singularity exec ${SINGULARITY_IMAGE} cp -R /usr/local/config augustus_config
-
-env time -v singularity run \
-    --no-home \
-    --home /opt/gm_key \
-    --cleanenv \
-    --env AUGUSTUS_CONFIG_PATH=${PWD}/augustus_config \
-    ${SINGULARITY_IMAGE} \
-        --cores ${SLURM_JOB_CPUS_PER_NODE} \
-        --species=${SPECIES} \
-        --genome=${GENOME} \
-        --bam=${BAM} \
-        --prot_seq=${PROT_SEQ} \
-        --prg=gth \
-        --gth2traingenes \
-        --gff3
+will update this section later
 ```
 
 
 ## Authors
 
-* **Nathan Weeks** - *Initial work* - [WebPage]()
-* **Arun Seetharam** - *maintainer* - [WebPage]()
+* **Arun Seetharam** - *author & maintainer* - [WebPage]()
 
 See also the list of [contributors](https://github.com/your/repository/contributors) who 
 participated in this project.
