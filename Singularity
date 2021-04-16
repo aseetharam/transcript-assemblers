@@ -83,12 +83,15 @@ From: ubuntu:20.04
     tar -xf CLASS-2.1.7.tar.gz 
     cd CLASS-2.1.7
     sh build.sh
+    chmod x+ class junc clnb grader addXS run_class.pl
     mv class junc clnb grader addXS run_class.pl /usr/bin/
 
     # install psi-calss
     cd /usr/local/src
     curl -L https://github.com/splicebox/PsiCLASS/archive/refs/tags/v1.0.2.tar.gz | tar -xz
     cd PsiCLASS-1.0.2/
+    chmod +x psiclass subexon-info combine-subexons classes vote-transcripts junc grader trust-splice addXS add-genename *.pl
+    mv psiclass subexon-info combine-subexons classes vote-transcripts junc grader trust-splice addXS add-genename *.pl /usr/bin/
     make
    
     # instll stringtie
@@ -140,7 +143,4 @@ From: ubuntu:20.04
 
 %apprun stringtie
     stringtie "@"
-
-
-
 

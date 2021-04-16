@@ -54,6 +54,13 @@ For running on your data:
 ```bash
 will update this section later
 ```
+## ToDo
+
+1. Add [AGAT](https://github.com/NBISweden/AGAT)
+2. Add [`phylostratR`]()
+3. Add [TESorter]()
+4. Add [OrthoFinder]()
+5. Add [BioAwk]()
 
 
 ## Authors
